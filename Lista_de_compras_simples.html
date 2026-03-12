@@ -1,0 +1,47 @@
+<input id="item" placeholder="Digite um item">
+<button onclick="adicionar()">Adicionar</button>
+
+<ul id="lista"></ul>
+
+<script>
+let itens = []
+
+function adicionar(){
+  const valor = document.getElementById("item").value
+  
+  console.log("Item digitado:", valor)
+
+  itens.push(valor)
+
+  console.log("Lista após adicionar:", itens)
+
+  render()
+}
+
+function remover(index){
+
+  console.log("Item que será removido:", itens[index])
+
+  itens.splice(index,1)
+
+  console.log("Lista após remover:", itens)
+
+  render()
+}
+
+function render(){
+  const ul = document.getElementById("lista")
+  ul.innerHTML = ""
+
+  console.log("Renderizando lista:", itens)
+
+  itens.forEach((item,i)=>{
+    ul.innerHTML += `
+      <li>
+        ${item}
+        <button onclick="remover(${i})">Remover</button>
+      </li>
+    `
+  })
+}
+</script>
