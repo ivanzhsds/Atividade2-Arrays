@@ -5,18 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
-    <button onclick="add()">Adicionar Nota</button>
-    <input type="nota" placeholder="Digite a nota:">
-    <input type="nome" placeholder="Digite o nome:">
+<body><input id="nome" placeholder="Nome do aluno">
+<input id="nota" placeholder="Nota">
+<button onclick="adicionar()">Adicionar</button>
+<button onclick="aprovados()">Mostrar aprovados</button>
 
-    <script>
-        let nome = document.getElementById("nome").value
-        let nota = document.getElementById("nota").value
+<ul id="lista"></ul>
 
-        function add(){
-            
-        }
-    </script>
+<script>
+
+let alunos = []
+
+function adicionar(){
+  const nome = document.getElementById("nome").value
+  const nota = Number(document.getElementById("nota").value)
+
+  alunos.push({nome:nome, nota:nota})
+
+  render(alunos)
+}
+
+function aprovados(){
+
+  const filtrados = alunos.filter(a => a.nota >= 7)
+
+  render(filtrados)
+}
+
+function render(lista){
+
+  const ul = document.getElementById("lista")
+  ul.innerHTML = ""
+
+  lista.forEach(a=>{
+    ul.innerHTML += `<li>${a.nome} - Nota: ${a.nota}</li>`
+  })
+}
+
+</script>
 </body>
 </html>
