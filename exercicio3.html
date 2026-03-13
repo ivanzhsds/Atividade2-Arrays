@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Lista de Tarefas</title>
+</head>
+<body>
+
+<h2>Lista de Tarefas</h2>
+<input id="titulo" placeholder="Tarefa">
+<input id="prioridade" placeholder="Prioridade (alta/normal)">
+<button onclick="adicionar()">Adicionar</button>
+
+<ul id="lista"></ul>
+
+<script>
+let tarefas = []
+
+function adicionar(){
+  const titulo = document.getElementById("titulo").value
+  const prioridade = document.getElementById("prioridade").value
+
+  const tarefa = {titulo:titulo, prioridade:prioridade}
+
+  if(prioridade.toLowerCase() === "alta"){
+    tarefas.unshift(tarefa)
+  }else{
+    tarefas.push(tarefa)
+  }
+
+  render()
+  document.getElementById("titulo").value=""
+  document.getElementById("prioridade").value=""
+}
+
+function render(){
+  const ul = document.getElementById("lista")
+  ul.innerHTML=""
+  tarefas.forEach(t=>{
+    ul.innerHTML += `<li>${t.titulo} - ${t.prioridade}</li>`
+  })
+}
+</script>
+
+</body>
+</html>

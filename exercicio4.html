@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Produtos com Desconto</title>
+</head>
+<body>
+
+<h2>Produtos com Desconto de 10%</h2>
+<button onclick="mostrar()">Mostrar produtos</button>
+
+<ul id="lista"></ul>
+
+<script>
+const produtos = [
+ {nome:"Mouse", preco:50},
+ {nome:"Teclado", preco:100},
+ {nome:"Monitor", preco:800}
+]
+
+function mostrar(){
+  const desconto = produtos.map(p=>{
+    return {nome:p.nome, preco:(p.preco*0.9).toFixed(2)}
+  })
+
+  const ul = document.getElementById("lista")
+  ul.innerHTML=""
+  desconto.forEach(p=>{
+    ul.innerHTML += `<li>${p.nome} - R$ ${p.preco}</li>`
+  })
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Lista de Tarefas com LocalStorage</title>
+</head>
+<body>
+
+<h2>Lista de Tarefas</h2>
+<input id="tarefa" placeholder="Nova tarefa">
+<button onclick="adicionar()">Adicionar</button>
+
+<ul id="lista"></ul>
+
+<script>
+let tarefas = JSON.parse(localStorage.getItem("tarefas")) || []
+
+function adicionar(){
+  const texto = document.getElementById("tarefa").value
+  if(texto){
+    tarefas.push(texto)
+    localStorage.setItem("tarefas", JSON.stringify(tarefas))
+    render()
+  }
+  document.getElementById("tarefa").value=""
+}
+
+function render(){
+  const ul = document.getElementById("lista")
+  ul.innerHTML=""
+  tarefas.forEach(t=>{
+    ul.innerHTML += `<li>${t}</li>`
+  })
+}
+
+render()
+</script>
+
+</body>
+</html>

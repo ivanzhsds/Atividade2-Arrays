@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Carrinho de Compras</title>
+</head>
+<body>
+
+<h2>Carrinho de Compras</h2>
+<input id="produto" placeholder="Produto">
+<button onclick="adicionar()">Adicionar</button>
+<button onclick="remover()">Remover último</button>
+
+<ul id="lista"></ul>
+
+<script>
+let carrinho=[]
+
+function adicionar(){
+  const nome = document.getElementById("produto").value
+  if(nome){
+    carrinho.push({nome:nome})
+    render()
+  }
+  document.getElementById("produto").value=""
+}
+
+function remover(){
+  carrinho.pop()
+  render()
+}
+
+function render(){
+  const ul = document.getElementById("lista")
+  ul.innerHTML=""
+  carrinho.forEach(p=>{
+    ul.innerHTML += `<li>${p.nome}</li>`
+  })
+}
+</script>
+
+</body>
+</html>

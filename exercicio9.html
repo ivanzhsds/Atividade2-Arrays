@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Catálogo de Filmes</title>
+</head>
+<body>
+
+<h2>Catálogo de Filmes</h2>
+<input id="titulo" placeholder="Título">
+<input id="genero" placeholder="Gênero">
+<input id="ano" placeholder="Ano">
+<button onclick="adicionar()">Adicionar Filme</button>
+<button onclick="filtrar()">Filtrar por Gênero</button>
+
+<ul id="lista"></ul>
+
+<script>
+let filmes=[]
+
+function adicionar(){
+  const titulo = document.getElementById("titulo").value
+  const genero = document.getElementById("genero").value
+  const ano = document.getElementById("ano").value
+  if(titulo && genero && ano){
+    filmes.push({titulo:titulo, genero:genero, ano:ano})
+    render(filmes)
+  }
+  document.getElementById("titulo").value=""
+  document.getElementById("genero").value=""
+  document.getElementById("ano").value=""
+}
+
+function filtrar(){
+  const g = prompt("Digite o gênero que deseja filtrar:")
+  const filtrados = filmes.filter(f=>f.genero.toLowerCase() === g.toLowerCase())
+  render(filtrados)
+}
+
+function render(lista){
+  const ul = document.getElementById("lista")
+  ul.innerHTML=""
+  lista.forEach(f=>{
+    ul.innerHTML += `<li>${f.titulo} - ${f.genero} (${f.ano})</li>`
+  })
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Ranking de Jogadores</title>
+</head>
+<body>
+
+<h2>Ranking de Jogadores</h2>
+<input id="jogador" placeholder="Nome do jogador">
+<input id="pontos" placeholder="Pontos">
+<button onclick="adicionar()">Adicionar</button>
+
+<ul id="lista"></ul>
+
+<script>
+let ranking=[]
+
+function adicionar(){
+  const jogador = document.getElementById("jogador").value
+  const pontos = Number(document.getElementById("pontos").value)
+  if(jogador && !isNaN(pontos)){
+    ranking.push({jogador:jogador, pontos:pontos})
+    mostrar()
+  }
+  document.getElementById("jogador").value=""
+  document.getElementById("pontos").value=""
+}
+
+function mostrar(){
+  const lista = ranking.map((j,i)=>{
+    return {posicao:i+1, jogador:j.jogador, pontos:j.pontos}
+  })
+  const ul = document.getElementById("lista")
+  ul.innerHTML=""
+  lista.forEach(j=>{
+    ul.innerHTML += `<li>${j.posicao}º - ${j.jogador} (${j.pontos} pts)</li>`
+  })
+}
+</script>
+
+</body>
+</html>
